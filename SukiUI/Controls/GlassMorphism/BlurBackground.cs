@@ -106,7 +106,10 @@ half4 main(float2 coord) {
        public void Render(ImmediateDrawingContext context)
         {
                 var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
-                using var lease = leaseFeature.Lease();
+
+                using var lease = leaseFeature?.Lease();
+                if (lease?.GrContext is null) return;
+
                 var canvas = lease.SkCanvas;
 
                 if (!canvas.TotalMatrix.TryInvert(out var currentInvertedTransform))
@@ -116,12 +119,12 @@ half4 main(float2 coord) {
                 if (IsDynamic)
                 {
                     _cachedBackground?.Dispose();
-                    _cachedBackground = lease.SkSurface.Snapshot();
+                    _cachedBackground = lease.SkSurface?.Snapshot();
                 }
                 else
                 {
                     if (_cachedBackground == null)
-                        _cachedBackground = lease.SkSurface.Snapshot();
+                        _cachedBackground = lease.SkSurface?.Snapshot();
                 }
                 
 

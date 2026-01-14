@@ -6,6 +6,7 @@
     <RootNamespace>SukiUI</RootNamespace>
     <UserSecretsId>712f85e4-12d3-41b0-a417-5714a113666f</UserSecretsId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Version>1.0.0-fix-render</Version>
   </PropertyGroup>
 
   <PropertyGroup>
